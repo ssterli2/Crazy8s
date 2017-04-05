@@ -5,15 +5,19 @@ using System.Linq;
 namespace CardGame{
     public class Deck{
         public List<Card> cards = new List<Card>();
+        public string aSuit {get; set;}
+        public List<Card> playedCards = new List<Card>();
+        public Card topCard {get; set;
             public Deck(){
-                reset();
+                setup();
+                shuffle();
             }
             public Card deal(){
                 Card temp = cards.First();
                 cards.RemoveAt(0);
                 return temp;
             } 
-            public void reset(){
+            public void setup(){
                 cards = new List<Card>();
                 string[] suits = {"Clubs", "Spades", "Hearts", "Diamonds"};
                 string[] stringVals = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
@@ -22,6 +26,11 @@ namespace CardGame{
                         cards.Add(new Card(str, stringVals[i-1], i));
                     }
                 }
+            }
+             public void reset(){
+                cards = playedCards;
+                playedCards.Clear();
+                shuffle();
             }
             public void shuffle(){
                 Random dealer = new Random();
