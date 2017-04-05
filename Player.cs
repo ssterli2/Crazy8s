@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace CardGame{
@@ -14,16 +15,24 @@ namespace CardGame{
             return newCard;
         }
         public Card play(int idx, Deck played){
-            idx--;
-            if (idx >= hand.Count || idx < 0){
-                return null;
+            
+            if (hand[idx].val == 8){
+                System.Console.WriteLine("What suit would you like to pick? ");
+                played.aSuit = Console.ReadLine();
+                if (played.aSuit != "Clubs" && played.aSuit != "Hearts" && played.aSuit != "Diamonds" && played.aSuit != "Spades"){
+                    System.Console.WriteLine("Learn how to type, try again, this time with Clubs, Hearts, Diamonds, or Spades.");
+                    play(idx, played);
+                }
             }
-            Card temp = hand[idx];
-            played.topCard = temp;
+            played.playedCards.Add(played.topCard);
+            played.topCard = hand[idx];
             hand.RemoveAt(idx);
-            return temp;
+            return played.topCard;
         }
         public bool validatePlay(int idx, Deck cards){
+            if (idx >= hand.Count || idx < 0){
+                return false;
+            }
             if (hand[idx].val == 8){
                 //valid play
                 play(idx, cards);
@@ -47,6 +56,13 @@ namespace CardGame{
             }
             else{
                 return false;
+            }
+        }
+        public void showHand(){
+            int idx = 1;
+            foreach (Card card in hand){
+                System.Console.WriteLine("{0}) {1} of {2}",idx,card.stringVal,card.suit );
+                idx++;
             }
         }
     }
