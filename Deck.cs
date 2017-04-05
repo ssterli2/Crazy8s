@@ -5,6 +5,8 @@ using System.Linq;
 namespace CardGame{
     public class Deck{
         public List<Card> cards = new List<Card>();
+        public List<Card> playedCards = new List<Card>();
+        public Card topCard {get; set;}
             public Deck(){
                 reset();
             }
