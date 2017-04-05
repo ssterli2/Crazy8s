@@ -7,7 +7,8 @@ namespace CardGame{
         public List<Card> cards = new List<Card>();
         public string aSuit {get; set;}
         public List<Card> playedCards = new List<Card>();
-        public Card topCard {get; set;
+        public Card topCard {get; set;}
+        public string[] suits = {"Clubs", "Spades", "Hearts", "Diamonds"};
             public Deck(){
                 setup();
                 shuffle();
@@ -19,7 +20,6 @@ namespace CardGame{
             } 
             public void setup(){
                 cards = new List<Card>();
-                string[] suits = {"Clubs", "Spades", "Hearts", "Diamonds"};
                 string[] stringVals = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
                 foreach (string str in suits){
                     for (int i = 1; i <= 13; i++){
