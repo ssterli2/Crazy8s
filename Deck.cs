@@ -6,6 +6,8 @@ namespace CardGame{
     public class Deck{
         public List<Card> cards = new List<Card>();
         public string aSuit {get; set;}
+        public List<Card> playedCards = new List<Card>();
+        public Card topCard {get; set;
             public Deck(){
                 setup();
                 shuffle();
